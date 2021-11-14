@@ -12,5 +12,5 @@ interface FlickrApi {
                 "&nojsoncallback=1" +
                 "&extras=url_s"
     )
-    fun fetchPhotos(): Call<FlickrResponse>
+    fun fetchPhotos(): Call<PhotoResponse>
 }
