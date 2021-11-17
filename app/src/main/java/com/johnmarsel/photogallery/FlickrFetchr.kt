@@ -18,21 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 private const val TAG = "FlickrFetchr"
 
-class FlickrFetchr {
-
-    private val flickrApi: FlickrApi
-
-    init {
-        val gson = GsonBuilder()
-            .registerTypeAdapter(PhotoResponse::class.java, PhotoDeserializer())
-            .create()
-        val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("https://api.flickr.com/")
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build()
-
-        flickrApi = retrofit.create(FlickrApi::class.java)
-    }
+/*class FlickrFetchr(private val flickrApi: FlickrApi) {
 
     fun fetchPhotos(): LiveData<List<GalleryItem>> {
         val responseLiveData: MutableLiveData<List<GalleryItem>> = MutableLiveData()
@@ -60,3 +46,4 @@ class FlickrFetchr {
         return responseLiveData
     }
 }
+ */

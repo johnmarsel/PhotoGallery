@@ -1,11 +1,16 @@
 package com.johnmarsel.photogallery
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.johnmarsel.photogallery.api.GalleryItem
+import androidx.lifecycle.viewModelScope
+import androidx.paging.*
+import com.johnmarsel.photogallery.api.FlickrApi
+import com.johnmarsel.photogallery.paging.PhotoDataSource
 
 class PhotoGalleryViewModel : ViewModel() {
 
-    val galleryItemLiveData: LiveData<List<GalleryItem>> = FlickrFetchr().fetchPhotos()
+    private val flickrApi = FlickrApi.create()
 
+    val galleryItemLiveData = Pager(PagingConfig(pageSize = 100)) {
+        PhotoDataSource(flickrApi)
+    }.liveData.cachedIn(viewModelScope)
 }
