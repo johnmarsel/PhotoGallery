@@ -7,6 +7,7 @@ import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.johnmarsel.photogallery.databinding.LoadingErrorStateBinding
+import com.johnmarsel.photogallery.visible
 
 class PhotosLoadStateAdapter(private val retry: () -> Unit):
     LoadStateAdapter<PhotosLoadStateAdapter.PhotosLoadStateViewHolder>() {
@@ -37,8 +38,4 @@ class PhotosLoadStateAdapter(private val retry: () -> Unit):
         LoadingErrorStateBinding.inflate(LayoutInflater.from(parent.context), parent, false),
         retry
     )
-}
-
-fun View.visible(isVisible: Boolean) {
-    visibility = if (isVisible) View.VISIBLE else View.GONE
 }

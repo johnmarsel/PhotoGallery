@@ -2,11 +2,13 @@ package com.johnmarsel.photogallery.api
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface FlickrApi {
 
@@ -18,6 +20,9 @@ interface FlickrApi {
                 "&extras=url_s"
     )
     suspend fun fetchPhotos(@Query("page") page: Int): PhotoResponse
+
+    @GET
+    fun fetchUrlBytes(@Url url: String): ResponseBody
 
     companion object {
 

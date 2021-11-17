@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.johnmarsel.photogallery.paging.PhotosAdapter
+import com.johnmarsel.photogallery.paging.PhotoAdapter
 import com.johnmarsel.photogallery.paging.PhotosLoadStateAdapter
 
 private const val TAG = "PhotoGalleryFragment"
@@ -17,7 +17,7 @@ class PhotoGalleryFragment : Fragment() {
 
     private lateinit var photoGalleryViewModel: PhotoGalleryViewModel
     private lateinit var photoRecyclerView: RecyclerView
-    private var adapter: PhotosAdapter = PhotosAdapter()
+    private var adapter: PhotoAdapter = PhotoAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
