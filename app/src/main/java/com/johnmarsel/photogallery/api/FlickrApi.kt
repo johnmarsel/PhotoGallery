@@ -2,27 +2,21 @@ package com.johnmarsel.photogallery.api
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
-import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
-import retrofit2.http.Url
 
 interface FlickrApi {
 
-    @GET(
-        "services/rest/?method=flickr.interestingness.getList" +
-                "&api_key=6a17d70fedd86896508b8d4cb407af6f" +
-                "&format=json" +
-                "&nojsoncallback=1" +
-                "&extras=url_s"
-    )
-    suspend fun fetchPhotos(@Query("page") page: Int): PhotoResponse
+    @GET("services/rest?method=flickr.interestingness.getList")
+    suspend fun fetchPhotos(@Query("page") page: Int,
+                            @Query("per_page") perPage: Int): PhotoResponse
 
-    @GET
-    fun fetchUrlBytes(@Url url: String): ResponseBody
+    @GET("services/rest?method=flickr.photos.search")
+    suspend fun searchPhotos(@Query("page") page: Int,
+                             @Query("text") query: String): PhotoResponse
 
     companion object {
 
@@ -38,6 +32,7 @@ interface FlickrApi {
                     val logging = HttpLoggingInterceptor()
                     logging.setLevel(HttpLoggingInterceptor.Level.BODY)
                     client.addInterceptor(logging)
+                    client.addInterceptor(PhotoInterceptor())
                 }.build())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()

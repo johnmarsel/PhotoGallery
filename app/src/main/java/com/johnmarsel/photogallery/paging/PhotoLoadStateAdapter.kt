@@ -1,7 +1,6 @@
 package com.johnmarsel.photogallery.paging
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
@@ -35,7 +34,6 @@ class PhotosLoadStateAdapter(private val retry: () -> Unit):
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState)
     = PhotosLoadStateViewHolder(
-        LoadingErrorStateBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-        retry
-    )
+        LoadingErrorStateBinding.inflate(LayoutInflater.from(parent.context),
+            parent, false), retry)
 }

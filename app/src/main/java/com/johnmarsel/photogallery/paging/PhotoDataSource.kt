@@ -7,17 +7,22 @@ import com.johnmarsel.photogallery.api.GalleryItem
 import retrofit2.HttpException
 import java.io.IOException
 
-class PhotoDataSource(private val flickrApi: FlickrApi) :
+class PhotoDataSource(private val flickrApi: FlickrApi, private val query: String) :
     PagingSource<Int, GalleryItem>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GalleryItem> {
 
-        val page = params.key ?: 0
+        val page = params.key ?: 1
         return try {
-            val response = flickrApi.fetchPhotos(page)
+            val response = when(query.isBlank())  {
+                true -> flickrApi.fetchPhotos(page, params.loadSize)
+                else -> {
+                    flickrApi.searchPhotos(page, query)
+                }
+            }
             LoadResult.Page(
                 response.galleryItems,
-                prevKey = if (page > 0) page - 1 else null,
+                prevKey = if (page > 1) page - 1 else null,
                 nextKey = if (page < response.totalPages.toInt()) page + 1 else null
             )
         } catch (exception: IOException) {

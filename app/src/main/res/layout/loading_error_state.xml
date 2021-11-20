@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -10,7 +9,7 @@
         android:id="@+id/progressbar"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/text_view_error"
@@ -19,10 +18,7 @@
         android:gravity="center_horizontal"
         android:textAlignment="center"
         android:textColor="#700101"
-        android:textSize="14sp"
-        android:visibility="gone"
-        tools:text="Some Error Occurred"
-        tools:visibility="visible" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/button_retry"
