@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.ContextCompat.getSystemServiceName
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 
 fun View.visible(isVisible: Boolean) {
@@ -28,6 +29,7 @@ fun getProgressDrawable(context: Context) : CircularProgressDrawable {
 fun ImageView.loadImage(url: String) {
     val options = RequestOptions()
         .placeholder(getProgressDrawable(this.context))
+        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
     Glide.with(this)
         .setDefaultRequestOptions(options)
         .load(url)

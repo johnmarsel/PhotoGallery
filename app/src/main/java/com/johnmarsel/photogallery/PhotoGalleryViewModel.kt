@@ -9,7 +9,7 @@ import com.johnmarsel.photogallery.paging.PhotoDataSource
 
 class PhotoGalleryViewModel(private val app: Application) : AndroidViewModel(app) {
 
-    private val flickrApi = FlickrApi.create()
+    private val flickrFetchr = FlickrFetchr()
 
     private val mutableSearchTerm = MutableLiveData<String>()
     val searchTerm: String
@@ -22,7 +22,7 @@ class PhotoGalleryViewModel(private val app: Application) : AndroidViewModel(app
 
         galleryItemLiveData = Transformations.switchMap(mutableSearchTerm) { searchTerm ->
             Pager(PagingConfig(pageSize = 20)) {
-                PhotoDataSource(flickrApi, searchTerm)
+                PhotoDataSource(flickrFetchr, searchTerm)
             }.liveData.cachedIn(viewModelScope)
         }
     }
