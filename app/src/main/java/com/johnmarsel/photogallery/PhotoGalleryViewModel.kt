@@ -3,13 +3,13 @@ package com.johnmarsel.photogallery
 import android.app.Application
 import androidx.lifecycle.*
 import androidx.paging.*
-import com.johnmarsel.photogallery.api.FlickrApi
 import com.johnmarsel.photogallery.api.GalleryItem
+import com.johnmarsel.photogallery.paging.PagingDataRepository
 import com.johnmarsel.photogallery.paging.PhotoDataSource
 
 class PhotoGalleryViewModel(private val app: Application) : AndroidViewModel(app) {
 
-    private val flickrFetchr = FlickrFetchr()
+    private val pagingRepository = PagingDataRepository()
 
     private val mutableSearchTerm = MutableLiveData<String>()
     val searchTerm: String
@@ -21,9 +21,8 @@ class PhotoGalleryViewModel(private val app: Application) : AndroidViewModel(app
         mutableSearchTerm.value = QueryPreferences.getStoredQuery(app)
 
         galleryItemLiveData = Transformations.switchMap(mutableSearchTerm) { searchTerm ->
-            Pager(PagingConfig(pageSize = 20)) {
-                PhotoDataSource(flickrFetchr, searchTerm)
-            }.liveData.cachedIn(viewModelScope)
+            pagingRepository.fetchPagingPhotos(searchTerm)
+                .cachedIn(viewModelScope)
         }
     }
 

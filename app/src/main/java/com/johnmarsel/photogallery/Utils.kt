@@ -4,11 +4,8 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.ContextCompat.getSystemServiceName
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy

@@ -1,6 +1,6 @@
 package com.johnmarsel.photogallery
 
-import androidx.paging.PagingSource
+import androidx.paging.*
 import com.johnmarsel.photogallery.api.FlickrApi
 import com.johnmarsel.photogallery.api.PhotoResponse
 import retrofit2.Call
@@ -21,10 +21,10 @@ class FlickrFetchr {
 
     suspend fun fetchPhotoMetaData(page: Int,
                                    query: String,
-                                   params: PagingSource.LoadParams<Int>
+                                   loadSize: Int
     ): PhotoResponse {
         return when(query.isBlank())  {
-            true -> flickrApi.fetchPhotos(page, params.loadSize)
+            true -> flickrApi.fetchPhotos(page, loadSize)
             else -> {
                 flickrApi.searchPhotos(page, query)
             }

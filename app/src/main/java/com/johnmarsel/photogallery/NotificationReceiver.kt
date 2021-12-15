@@ -13,8 +13,10 @@ private const val TAG = "NotificationReceiver"
 class NotificationReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         Log.i(TAG, "received result: $resultCode")
+
         if (resultCode != Activity.RESULT_OK) {
             // Активность переднего плана отменила возврат трансляции.
+            return
         }
 
         val requestCode = intent.getIntExtra(PollWorker.REQUEST_CODE, 0)

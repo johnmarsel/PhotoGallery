@@ -3,7 +3,6 @@ package com.johnmarsel.photogallery.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.johnmarsel.photogallery.FlickrFetchr
-import com.johnmarsel.photogallery.api.FlickrApi
 import com.johnmarsel.photogallery.api.GalleryItem
 import retrofit2.HttpException
 import java.io.IOException
@@ -16,7 +15,7 @@ class PhotoDataSource(private val flickrFetchr: FlickrFetchr, private val query:
         val page = params.key ?: 1
         return try {
 
-            val response = flickrFetchr.fetchPhotoMetaData(page, query, params)
+            val response = flickrFetchr.fetchPhotoMetaData(page, query, params.loadSize)
 
             LoadResult.Page(
                 response.galleryItems,

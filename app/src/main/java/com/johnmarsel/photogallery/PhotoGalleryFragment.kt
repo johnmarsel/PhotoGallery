@@ -8,8 +8,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
