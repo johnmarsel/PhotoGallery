@@ -1,11 +1,8 @@
 package com.johnmarsel.photogallery
 
-import androidx.paging.*
 import com.johnmarsel.photogallery.api.FlickrApi
 import com.johnmarsel.photogallery.api.PhotoResponse
 import retrofit2.Call
-
-private const val TAG = "FlickrFetchr"
 
 class FlickrFetchr {
 

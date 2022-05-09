@@ -73,10 +73,10 @@ class PhotoGalleryFragment : VisibleFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         photoGalleryViewModel.galleryItemLiveData.observe(
-            viewLifecycleOwner,
-            { pagingData ->
-                adapter.submitData(lifecycle, pagingData)
-            })
+            viewLifecycleOwner
+        ) { pagingData ->
+            adapter.submitData(lifecycle, pagingData)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

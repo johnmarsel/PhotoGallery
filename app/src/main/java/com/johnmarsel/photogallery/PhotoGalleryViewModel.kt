@@ -5,7 +5,6 @@ import androidx.lifecycle.*
 import androidx.paging.*
 import com.johnmarsel.photogallery.api.GalleryItem
 import com.johnmarsel.photogallery.paging.PagingDataRepository
-import com.johnmarsel.photogallery.paging.PhotoDataSource
 
 class PhotoGalleryViewModel(private val app: Application) : AndroidViewModel(app) {
 
